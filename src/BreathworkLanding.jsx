@@ -89,7 +89,7 @@ export default function BreathworkLanding() {
               <div className="col-md-8">
                 <h4 className="fw-semibold">Meet Natalia</h4>
                 <p className="text-muted">
-                  Natalia is a certified breathwork practitioner with over 5 years of experience helping individuals unlock
+                  Natalia Lalioti is a certified breathwork practitioner with over 5 years of experience helping individuals unlock
                   their full potential through mindful breathing techniques. Passionate about holistic wellness, she combines
                   science and tradition to guide transformative breath sessions. When not teaching, Natalia enjoys hiking and
                   practicing yoga.
