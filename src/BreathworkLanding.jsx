@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import BreathingTool from "./BreathingTool";
+import logo from '/logo.png'; // Import the logo
 
 export default function BreathworkLanding() {
 
@@ -11,14 +12,22 @@ export default function BreathworkLanding() {
     '/pic4.png'
   ];
 
+  // Define the purple color from the logo
+  const logoPurple = '#9400D3';
+  const lightLogoPurple = 'rgba(148, 0, 211, 0.1)'; // Very light purple
+
   return (
       <div className="bg-light text-dark min-vh-100">
         <header className="bg-white shadow-sm">
           <div className="container py-4 d-flex align-items-center justify-content-between">
             <div className="d-flex align-items-center gap-3">
-              <div className="rounded-circle bg-success d-flex align-items-center justify-content-center text-white fw-bold" style={{height: 40, width: 40}}>TBC</div>
+              {/* Logo added here */}
+              <img
+                  src={logo}
+                  alt="The breath logo"
+                  style={{ height: 40, width: 'auto' }} // Adjust size as needed
+              />
               <div>
-                <h1 className="h4 fw-semibold mb-0">The Breathwork Collective</h1>
                 <p className="small text-muted mb-0">Guided breath sessions • Online & In-person</p>
               </div>
             </div>
@@ -41,7 +50,7 @@ export default function BreathworkLanding() {
             />
             <div className="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
               <div className="text-center text-white p-4" style={{maxWidth: 600}}>
-                <h2 className="fw-bold display-5">Breathe to Calm • Breathe to Be</h2>
+                <h2 className="fw-bold display-5">breaTHE ∞</h2>
                 <p className="mt-3 fs-5">Simple breath practices, rooted in tradition and science, to help you reduce stress, sleep better, and feel energised.</p>
                 <div className="mt-4 d-flex gap-2 justify-content-center">
                   <a href="#sessions" className="btn btn-light text-success fw-bold">Join a Session</a>
@@ -66,7 +75,7 @@ export default function BreathworkLanding() {
                 </ul>
               </div>
               <div className="col-md-6">
-                <div className="bg-white rounded shadow-sm p-3">
+                <div className=" rounded shadow-sm p-3" style={{ backgroundColor: lightLogoPurple }}>
                   <h4 className="fw-semibold">Daily Practices</h4>
                   <ol className="mt-2 ps-3 text-muted">
                     <li>Morning: 5–10 minutes of gentle diaphragmatic breathing</li>
@@ -114,21 +123,21 @@ export default function BreathworkLanding() {
                 <div className="p-3 bg-white rounded shadow-sm">
                   <h4 className="fw-semibold">Weekly Group</h4>
                   <p className="mt-2 text-muted">60-min guided session • Online</p>
-                  <p className="mt-3 fw-bold">€12 / session</p>
+                  <p className="mt-3 fw-bold" style={{ color: logoPurple }}>€12 / session</p>
                 </div>
               </div>
               <div className="col-md-4">
                 <div className="p-3 bg-white rounded shadow-sm">
                   <h4 className="fw-semibold">Monthly Pass</h4>
                   <p className="mt-2 text-muted">Unlimited drop-ins for one month</p>
-                  <p className="mt-3 fw-bold">€39 / month</p>
+                  <p className="mt-3 fw-bold" style={{ color: logoPurple }}>€39 / month</p>
                 </div>
               </div>
               <div className="col-md-4">
                 <div className="p-3 bg-white rounded shadow-sm">
                   <h4 className="fw-semibold">Private Session</h4>
                   <p className="mt-2 text-muted">1:1 tailored breathwork</p>
-                  <p className="mt-3 fw-bold">€60 / session</p>
+                  <p className="mt-3 fw-bold" style={{ color: logoPurple }}>€60 / session</p>
                 </div>
               </div>
             </div>
