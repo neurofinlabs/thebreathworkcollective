@@ -171,7 +171,7 @@ export default function BreathworkLanding() {
         </main>
 
         <footer className="bg-white border-top mt-5">
-          <div className="container py-4 text-muted small">2025 © The Breathwork Collective • Built with love &hearts; by <a href="https://www.linkedin.com/company/quantoslabs">Quantos Labs</a></div>
+          <div className="container py-4 text-muted small">2025 © breaTHE ∞ • Built with love &hearts; by <a href="https://www.linkedin.com/company/quantoslabs">Quantos Labs</a></div>
         </footer>
       </div>
   );
