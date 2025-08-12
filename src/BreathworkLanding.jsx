@@ -28,7 +28,7 @@ export default function BreathworkLanding() {
                   style={{ height: 40, width: 'auto' }} // Adjust size as needed
               />
               <div>
-                <p className="small text-muted mb-0">Guided breath sessions • Online & In-person</p>
+                <p className="small text-muted mb-0" style={{ paddingTop: '10px' }}>Guided breath sessions • Online & In-person</p>
               </div>
             </div>
             <nav className="d-none d-md-flex gap-4">
