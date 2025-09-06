@@ -1,10 +1,125 @@
 import React, { useState, useEffect } from 'react';
 import BreathingTool from "./BreathingTool";
-import logo from '/logo.png'; // Import the logo
+import logo from '/logo.png';
+import CarouselGallery from "./components/AccordionGallery";
+
+const heroImages = [
+  { src: '/hero.png', alt: 'Breathwork Hero 1' },
+  { src: '/hero2.png', alt: 'Breathwork Hero 2' }
+];
+
+function HeroCarousel() {
+  const [current, setCurrent] = useState(0);
+
+  const prev = () => setCurrent((current - 1 + heroImages.length) % heroImages.length);
+  const next = () => setCurrent((current + 1) % heroImages.length);
+
+  useEffect(() => {
+    const timer = setTimeout(() => next(), 8000);
+    return () => clearTimeout(timer);
+  }, [current]);
+
+  return (
+    <div className="position-relative">
+      <img
+        src={heroImages[current].src}
+        alt={heroImages[current].alt}
+        className="w-100"
+        style={{ height: '70vh', objectFit: 'cover', filter: 'brightness(75%)', transition: 'opacity 0.6s' }}
+      />
+      <div className="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
+        <div className="text-center text-white p-4" style={{ maxWidth: 600 }}>
+          <h2 className="fw-bold display-5">breaTHE ∞</h2>
+          <p className="mt-3 fs-5">Simple breath practices, rooted in tradition and science, to help you reduce stress, sleep better, and feel energised.</p>
+          <div className="mt-4 d-flex gap-2 justify-content-center">
+            <a href="#sessions" className="btn btn-light text-success fw-bold">Join a Session</a>
+            <a href="#breath" className="btn btn-outline-light text-white">Try a 5-min Breath</a>
+          </div>
+        </div>
+      </div>
+      {/* Carousel arrows */}
+      <button
+        className="hero-carousel-arrow left"
+        onClick={prev}
+        aria-label="Previous hero"
+        style={{
+          position: 'absolute',
+          top: '50%',
+          left: 24,
+          transform: 'translateY(-50%)',
+          background: 'rgba(255,255,255,0.7)',
+          border: 'none',
+          borderRadius: '50%',
+          width: 48,
+          height: 48,
+          fontSize: 28,
+          color: '#9400D3',
+          zIndex: 10,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}
+      >&#8592;</button>
+      <button
+        className="hero-carousel-arrow right"
+        onClick={next}
+        aria-label="Next hero"
+        style={{
+          position: 'absolute',
+          top: '50%',
+          right: 24,
+          transform: 'translateY(-50%)',
+          background: 'rgba(255,255,255,0.7)',
+          border: 'none',
+          borderRadius: '50%',
+          width: 48,
+          height: 48,
+          fontSize: 28,
+          color: '#9400D3',
+          zIndex: 10,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}
+      >&#8594;</button>
+      {/* Carousel dots */}
+      <div
+        className="hero-carousel-dots"
+        style={{
+          position: 'absolute',
+          left: 0,
+          right: 0,
+          bottom: 24,
+          display: 'flex',
+          justifyContent: 'center',
+          gap: 12,
+          zIndex: 10
+        }}
+      >
+        {heroImages.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => setCurrent(idx)}
+            aria-label={`Go to slide ${idx + 1}`}
+            style={{
+              width: 14,
+              height: 14,
+              borderRadius: '50%',
+              border: 'none',
+              background: idx === current ? '#9400D3' : 'rgba(255,255,255,0.7)',
+              boxShadow: idx === current ? '0 0 0 2px #fff' : 'none',
+              cursor: 'pointer',
+              transition: 'background 0.2s'
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function BreathworkLanding() {
 
-  const heroImg = '/hero.png';
   const gallery = [
     '/pic1.png',
     '/pic2.png',
@@ -12,7 +127,6 @@ export default function BreathworkLanding() {
     '/pic4.png'
   ];
 
-  // Define the purple color from the logo
   const logoPurple = '#9400D3';
   const lightLogoPurple = 'rgba(148, 0, 211, 0.1)'; // Very light purple
 
@@ -41,24 +155,8 @@ export default function BreathworkLanding() {
         </header>
 
         <main>
-          <section className="position-relative">
-            <img
-                src={heroImg}
-                alt="Breathwork"
-                className="w-100"
-                style={{height: '70vh', objectFit: 'cover', filter: 'brightness(75%)'}}
-            />
-            <div className="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
-              <div className="text-center text-white p-4" style={{maxWidth: 600}}>
-                <h2 className="fw-bold display-5">breaTHE ∞</h2>
-                <p className="mt-3 fs-5">Simple breath practices, rooted in tradition and science, to help you reduce stress, sleep better, and feel energised.</p>
-                <div className="mt-4 d-flex gap-2 justify-content-center">
-                  <a href="#sessions" className="btn btn-light text-success fw-bold">Join a Session</a>
-                  <a href="#breath" className="btn btn-outline-light text-white">Try a 5-min Breath</a>
-                </div>
-              </div>
-            </div>
-          </section>
+          {/* HERO CAROUSEL */}
+          <HeroCarousel />
 
           <section id="about" className="container py-5">
             <div className="row align-items-center g-4">
@@ -121,16 +219,16 @@ export default function BreathworkLanding() {
             <div className="mt-4 row g-4">
               <div className="col-md-4">
                 <div className="p-3 bg-white rounded shadow-sm">
-                  <h4 className="fw-semibold">Weekly Group</h4>
-                  <p className="mt-2 text-muted">60-min guided session • Online</p>
-                  <p className="mt-3 fw-bold" style={{ color: logoPurple }}>€12 / session</p>
+                  <h4 className="fw-semibold">Bi-weekly Group</h4>
+                  <p className="mt-2 text-muted">2 hours guided session • Online</p>
+                  <p className="mt-3 fw-bold" style={{ color: logoPurple }}>€40 / session</p>
                 </div>
               </div>
               <div className="col-md-4">
                 <div className="p-3 bg-white rounded shadow-sm">
-                  <h4 className="fw-semibold">Monthly Pass</h4>
-                  <p className="mt-2 text-muted">Unlimited drop-ins for one month</p>
-                  <p className="mt-3 fw-bold" style={{ color: logoPurple }}>€39 / month</p>
+                  <h4 className="fw-semibold">Breathwork to Business</h4>
+                  <p className="mt-2 text-muted">&nbsp;</p>
+                  <p className="mt-3 fw-bold" style={{ color: logoPurple }}>Upon Request</p>
                 </div>
               </div>
               <div className="col-md-4">
@@ -146,12 +244,14 @@ export default function BreathworkLanding() {
           <section id="gallery" className="bg-light py-5">
             <div className="container">
               <h3 className="h4 fw-semibold">Gallery</h3>
-              <div className="mt-4 row g-3">
-                {gallery.map((src, i) => (
-                    <div className="col-sm-6 col-md-3" key={i}>
-                      <img src={src} alt={`breath-${i}`} className="w-100 rounded" style={{height: '176px', objectFit: 'cover'}} />
-                    </div>
-                ))}
+              <div className="mt-4">
+                <CarouselGallery
+                  images={gallery.map((src, i) => ({
+                    src,
+                    alt: `breath-${i}`,
+                    caption: `Session ${i + 1}`
+                  }))}
+                />
               </div>
             </div>
           </section>
@@ -171,7 +271,7 @@ export default function BreathworkLanding() {
         </main>
 
         <footer className="bg-white border-top mt-5">
-          <div className="container py-4 text-muted small">2025 © breaTHE ∞ • Built with love &hearts; by <a href="https://www.linkedin.com/company/quantoslabs">Quantos Labs</a></div>
+          <div className="container py-4 text-muted small">2025 © breaTHE ∞ • Built with love &hearts; by <a href="https://neurofinlabs.com">NeuroFin Labs</a></div>
         </footer>
       </div>
   );
