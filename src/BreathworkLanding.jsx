@@ -241,20 +241,21 @@ export default function BreathworkLanding() {
             </div>
           </section>
 
-          <section id="gallery" className="bg-light py-5">
-            <div className="container">
-              <h3 className="h4 fw-semibold">Gallery</h3>
-              <div className="mt-4">
-                <CarouselGallery
-                  images={gallery.map((src, i) => ({
-                    src,
-                    alt: `breath-${i}`,
-                    caption: `Session ${i + 1}`
-                  }))}
-                />
-              </div>
-            </div>
-          </section>
+            <section id="gallery" className="py-5" style={{ backgroundColor: lightLogoPurple }}>
+                <div className="container">
+                    <h3 className="h4 fw-semibold">Gallery</h3>
+                    <div className="mt-4">
+                        <CarouselGallery
+                            images={gallery.map((src, i) => ({
+                                src,
+                                alt: `breath-${i}`,
+                                caption: `Session ${i + 1}`
+                            }))}
+                        />
+                    </div>
+                </div>
+            </section>
+
 
           <section id="contact" className="container py-5">
             <h3 className="h4 fw-semibold">Contact & Newsletter</h3>
